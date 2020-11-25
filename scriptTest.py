@@ -1,2 +1,2 @@
 
-print(str(("Hello,THE world")))
+print("Hello,THE world")
