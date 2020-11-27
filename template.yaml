@@ -1,10 +1,15 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
-Description: Hello World
-Resources:
-  HelloFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: index.lambda_handler
-      Runtime: python3.8
-      CodeUri: ./
+language: python
+python:
+- '3.8'
+before_install:
+- pip install cfn-pyplates
+- pip install boto3
+- pip install Jinja2
+- pip install pytest-cov
+install:
+- pip install coveralls
+script:
+- py.test --cov-report= --cov=respawn/
+- python setup.py install
+after_success:
+- coveralls
