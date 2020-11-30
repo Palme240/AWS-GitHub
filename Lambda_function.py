@@ -2,8 +2,6 @@ import json
 import boto3
 import requests
 
-pipeline = boto3.client('codepipeline')
-
 def lambda_handler(event, context):
     # TODO implement
     # api-endpoint 
