@@ -1,8 +1,23 @@
 version: 0.2
 
-phases: 
+env:
+  secrets-manager:
+    CLOUDSMITH_API_KEY: CodeBuild/CloudsmithAPI:CLOUDSMITH_API_KEY
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.x
+    commands:
+      - apt update
+      - apt-get install ruby ruby-dev rubygems build-essential -y
+      - gem install --no-document fpm
+      - pip install cloudsmith-cli
   build:
     commands:
-      - echo Entered the build phase...
-      - echo Build started on `date`
-      - mvn install
+      - make
+      - fpm -f -s dir -t deb -v 1.0.1 -n cloudsmith-codebuild-test .
+  post_build:
+    commands:
+      - echo "Uploading deb package to Cloudsmith repo"
+      - cloudsmith push deb demo/codebuild-demo/debian/buster cloudsmith-codebuild-test_1.0.1_amd64.deb
