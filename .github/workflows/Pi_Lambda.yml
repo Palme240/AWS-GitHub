@@ -1,11 +1,39 @@
-- name: Py Lambda Deploy
-  # You may pin to the exact commit or the version.
-  # uses: mariamrf/py-lambda-action@5c8e766725fc5efcbb4cf2ca807666026a9530fc
-  uses: mariamrf/py-lambda-action@1.0.1
-  with:
-    # the name/path to the requirements.txt file
-    requirements_txt: # default is requirements.txt
-    # The ARN for the Lambda layer the dependencies should be pushed to without the version (every push is a new version).
-    lambda_layer_arn: 
-    # The Lambda function name. Check the AWS docs/readme for examples.
-    lambda_function_name: 
+name: deploy-py-lambda
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@master
+    - name: Deploy code to Lambda
+      uses: mariamrf/py-lambda-action@v1.0.0
+      with:
+        lambda_layer_arn: 'name: deploy-py-lambda
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@master
+    - name: Deploy code to Lambda
+      uses: mariamrf/py-lambda-action@v1.0.0
+      with:
+        lambda_layer_arn: 'arn:aws:lambda:eu-central-1:543235262310:function:serverless'
+        lambda_function_name: 'serverless'
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: 'us-east-2''
+        lambda_function_name: 'my-function'
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: 'eu-central-1'
