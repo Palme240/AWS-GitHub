@@ -1,0 +1,19 @@
+version = 0.1
+2
+[default]
+3
+[default.deploy]
+4
+[default.deploy.parameters]
+5
+stack_name = "sam-github-actions-app"
+6
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1xyg1t2j2ws5k"
+7
+s3_prefix = "sam-app"
+8
+region = "us-east-1"
+9
+confirm_changeset = false
+10
+capabilities = "CAPABILITY_IAM"
