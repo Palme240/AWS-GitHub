@@ -1,0 +1,11 @@
+- name: Py Lambda Deploy
+  # You may pin to the exact commit or the version.
+  # uses: mariamrf/py-lambda-action@5c8e766725fc5efcbb4cf2ca807666026a9530fc
+  uses: mariamrf/py-lambda-action@1.0.1
+  with:
+    # the name/path to the requirements.txt file
+    requirements_txt: # default is requirements.txt
+    # The ARN for the Lambda layer the dependencies should be pushed to without the version (every push is a new version).
+    lambda_layer_arn: 
+    # The Lambda function name. Check the AWS docs/readme for examples.
+    lambda_function_name: 
