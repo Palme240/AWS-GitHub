@@ -33,10 +33,5 @@ def lambda_handler(event, context):
       %(latitude, longitude,formatted_address))
     output={"address":formatted_address} 
     return output
-    
-    response = pipeline.put_job_success_result(
-        jobId=event['CodePipeline.job']['id']
-    )
-    return response
 
     #return('Hello from %s'%formatted_address)
