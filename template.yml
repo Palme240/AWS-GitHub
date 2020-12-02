@@ -1,28 +1,18 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Transform: 'AWS::Serverless-2016-10-31'
-Description: An AWS Serverless Specification template describing your function.
+Transform: AWS::Serverless-2016-10-31
 Resources:
-  KashIoTLambda:
-    Type: 'AWS::Serverless::Function'
+  Function:
+    Type: AWS::Serverless::Function
     Properties:
-      Handler: lambda.handler
-      Runtime: python3.7
       CodeUri: ./
-      Description: ''
-      MemorySize: 128
-      Timeout: 3
-      Role: 'arn:aws:iam::1234:role/abc-backend'
-      Events:
-        Api1:
-          Type: Api
-          Properties:
-            Path: '/{proxy+}'
-            Method: OPTIONS
-        Api2:
-          Type: Api
-          Properties:
-            Path: /MyResource
-            Method: ANY
-      Environment:
-        Variables:
-          REGION: eu-central-1
+      FunctionName: myfunction-env
+      Handler: dev.lambda_handler
+      Runtime: python3.8
+      Timeout: 300
+      MemorySize: 256
+      Policies:
+        - AmazonS3FullAccess
+        - AmazonTextractFullAccess
+        - CloudWatchLogsFullAccess
+        - AWSLambdaBasicExecutionRole
+      Description: Invoke lambda function.
