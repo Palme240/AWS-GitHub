@@ -62,7 +62,7 @@ Resources:
 
   # Grant permission for the newly created API to invoke our Lambda function
   LambdaApiGatewayInvoke:
-    Type: AWS::Lambda::Permission
+    Type: AWS::Serverless::Permission
     Properties:
       Action: lambda:InvokeFunction
       FunctionName: !GetAtt LambdaFunction.Arn
