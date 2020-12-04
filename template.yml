@@ -17,11 +17,24 @@ Resources:
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
       Description: Invoke lambda function.
-  events:
-      - http:
-        path: echo/hello
-        method: get
 
-    
+ApiGatewayApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: "Users"
+      StageName: prod
+      Models:
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            FirstName:
+              type: string
+            LastName:
+              type: string
+            Email:
+              type: string
+            
 
     
