@@ -1,5 +1,3 @@
-#Create a Lambda Function
-
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Function and API Gateway creating and deployment
@@ -26,9 +24,7 @@ Resources:
                         Path: /api/v3/Client
                         Method: get
                         RestApiId:
-                            Ref: MyApi
-
-#Create and Deploy a REST API with API Gateway Service 
+                            Ref: MyApi 
 
     
 
