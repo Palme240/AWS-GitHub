@@ -17,8 +17,8 @@ Resources:
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
       Description: Invoke lambda function.
-events:
-  - http:
+  events:
+      - http:
       path: echo/hello
       method: get
 
