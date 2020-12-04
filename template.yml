@@ -17,3 +17,11 @@ Resources:
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
       Description: Invoke lambda function.
+      Events:
+                YourGetEvent:
+                    Type: Api 
+                    Properties:
+                        Path: /api/v3/Client
+                        Method: get
+                        RestApiId:
+                            Ref: MyApi
