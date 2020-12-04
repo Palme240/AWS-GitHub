@@ -24,37 +24,36 @@ Resources:
 
 
 
+  SampleApi:
+      Type: "AWS::ApiGateway::RestApi"
+      Properties:
+        Name: ApiDeploy
 
-SampleApi:
-    Type: "AWS::ApiGateway::RestApi"
-    Properties:
-      Name: ApiDeploy
+    SampleApiMethod:
+      Type: "AWS::ApiGateway::Method"
+      Properties:
+        AuthorizationType: "NONE"
+        HttpMethod: "GET"
+        Integration:
+          IntegrationHttpMethod: "POST"
+          type: "AWS_PROXY"
+          Uri: !Sub
+            - "arn:aws:apigateway:${AWS::Region}:lambda/path:2015-03-31/functions/${lambdaArn}/invocations"
+            - lambdaArn: !GetAtt "SampleLambda.Arn"
+          ResourcesId: !GetAtt "SampleApi.RootResourceId"
+          RestApiId: !Ref "SampleApi"
 
-  SampleApiMethod:
-    Type: "AWS::ApiGateway::Method"
-    Properties:
-      AuthorizationType: "NONE"
-      HttpMethod: "GET"
-      Integration:
-        IntegrationHttpMethod: "POST"
-        type: "AWS_PROXY"
-        Uri: !Sub
-          - "arn:aws:apigateway:${AWS::Region}:lambda/path:2015-03-31/functions/${lambdaArn}/invocations"
-          - lambdaArn: !GetAtt "SampleLambda.Arn"
-        ResourcesId: !GetAtt "SampleApi.RootResourceId"
+    SampleApiDeployment:
+      Type: "AWS::ApiGateway::Deployment"
+      DependsOn: "SampleApiMethod"
+      Properties:
         RestApiId: !Ref "SampleApi"
-   
-  SampleApiDeployment:
-    Type: "AWS::ApiGateway::Deployment"
-    DependsOn: "SampleApiMethod"
-    Properties:
-      RestApiId: !Ref "SampleApi"
-      StageName: test
+        StageName: test
 
-  LambdaApiGatewayInvoke:
-    Type: "AWS::Lambda::Permission"
-    Properties:
-      Action: "lambda:InvokeFunction"
-      FunctionName: !GetAtt "SampleLambda.Arn"
-      Principal: "apigateway.amazonaws.com"
-      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId }:${SampleApi}/*/GET/"
+    LambdaApiGatewayInvoke:
+      Type: "AWS::Lambda::Permission"
+      Properties:
+        Action: "lambda:InvokeFunction"
+        FunctionName: !GetAtt "SampleLambda.Arn"
+        Principal: "apigateway.amazonaws.com"
+        SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId }:${SampleApi}/*/GET/"
