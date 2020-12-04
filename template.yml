@@ -17,9 +17,62 @@ Resources:
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
       Description: Invoke lambda function.
-      Events:
-        GetResource:
-          Type: Api
-          Properties:
-            Path: /resource/{resourceId}
-            Method: get
+
+ # Register an API in API Gateway
+  ApiGateway:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: Java Shouty Echo Demo
+      Description: Java Shouty Echo API
+
+  # Mark it as a "proxy" integration that forwards all requests to our Lambda function
+  ApiGatewayMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: ANY
+      Integration:
+        IntegrationHttpMethod: POST
+        Type: AWS_PROXY
+        Uri: !Sub
+          - arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations
+          - LambdaArn: !GetAtt LambdaFunction.Arn
+      ResourceId: !GetAtt ApiGateway.RootResourceId
+      RestApiId: !Ref ApiGateway
+
+  ApiGatewayDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn:
+      - ApiGatewayMethod
+    Properties:
+      RestApiId: !Ref ApiGateway
+
+  # Enable logging of all HTTP requests
+  ApiStage:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      DeploymentId: !Ref ApiGatewayDeployment
+      MethodSettings:
+        - HttpMethod: '*'
+          LoggingLevel: INFO
+          ResourcePath: /*
+          DataTraceEnabled: true
+      RestApiId: !Ref ApiGateway
+      StageName: echo
+
+  # Grant permission for the newly created API to invoke our Lambda function
+  LambdaApiGatewayInvoke:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !GetAtt LambdaFunction.Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/*/
+
+
+Outputs:
+  ApiUrl:
+    Value: !Sub
+      - https://${ApiId}.execute-api.${AWS::Region}.amazonaws.com/${StageName}
+      - ApiId: !Ref ApiGateway
+        StageName: !Ref ApiStage
