@@ -6,7 +6,7 @@ Resources:
     Properties:
       CodeUri: ./src
       FunctionName: myfunction-GitHub
-      Handler: dev.lambda_handler
+      Handler: index.lambda_handler
       Runtime: python3.8
       Timeout: 300
       MemorySize: 256
