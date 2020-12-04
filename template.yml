@@ -4,7 +4,7 @@ Resources:
   Function:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: ./
+      CodeUri: ./src
       FunctionName: myfunction-GitHub
       Handler: dev.lambda_handler
       Runtime: python3.8
