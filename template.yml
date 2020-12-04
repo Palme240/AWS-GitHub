@@ -19,8 +19,8 @@ Resources:
       Description: Invoke lambda function.
   events:
       - http:
-      path: echo/hello
-      method: get
+        path: echo/hello
+        method: get
 
     
 
