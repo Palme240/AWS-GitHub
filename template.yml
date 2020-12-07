@@ -4,7 +4,7 @@ Resources:
   ApiResource:
     Type: AWS::Serverless::Api
     Properties:
-      Name: AWS
+      Name: API
       StageName: Test
       
   Function2:
@@ -23,7 +23,7 @@ Resources:
         - AWSLambdaBasicExecutionRole
       Description: Invoke lambda function.
       Events:
-        HelloWorld:
+        API:
           Type: Api
           Properties:
             Path: /
@@ -46,7 +46,7 @@ Resources:
         - AWSLambdaBasicExecutionRole    
       
       Events:
-        HelloWorld:
+        API:
           Type: Api
           Properties:
             Path: /hello
