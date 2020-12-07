@@ -4,10 +4,11 @@ Resources:
   ApiResource:
     Type: AWS::Serverless::Api
     Properties:
-      StageName: prod
+      Name: AWS
+      StageName: Test
       
-  Function:
-    Type: AWS::Serverless::Function
+  Function2:
+      Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
       FunctionName: myfunction-GitHub
@@ -28,6 +29,7 @@ Resources:
             Path: /
             Method: get
             RestApiId: !Ref ApiResource
+            
   Function:
     Type: AWS::Serverless::Function
     Properties:
