@@ -23,7 +23,6 @@ Resources:
         - AWSLambdaBasicExecutionRole
       Description: Invoke lambda function.
       Events:
-        API:
           Type: Api
           Properties:
             Path: /
@@ -46,7 +45,6 @@ Resources:
         - AWSLambdaBasicExecutionRole    
       
       Events:
-        API:
           Type: Api
           Properties:
             Path: /hello
