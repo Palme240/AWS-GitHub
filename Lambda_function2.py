@@ -2,7 +2,7 @@ import json
 
 
 def lambda_handler(event, context):
-    return response('Welcome to my python lambda function n°2', 200)
+    return response("Welcome to my python lambda function n°2", 200)
 
 
 def response(message, status_code):
