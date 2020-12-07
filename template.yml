@@ -16,6 +16,12 @@ Resources:
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
       Description: Invoke lambda function.
+      Events:
+        HelloWorldV2:
+          Type: Api
+          Properties:
+            Path: /
+            Method: get
   Function:
     Type: AWS::Serverless::Function
     Properties:
