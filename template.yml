@@ -1,6 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Resources:
+  ApiResource:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      
   Function:
     Type: AWS::Serverless::Function
     Properties:
@@ -22,6 +27,7 @@ Resources:
           Properties:
             Path: /
             Method: get
+            RestApiId: !Ref ApiResource
   Function:
     Type: AWS::Serverless::Function
     Properties:
@@ -43,4 +49,5 @@ Resources:
           Properties:
             Path: /
             Method: get
+            RestApiId: !Ref ApiResource
  
