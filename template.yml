@@ -49,7 +49,7 @@ Resources:
         HelloWorld:
           Type: Api
           Properties:
-            Path: /
+            Path: /hello
             Method: get
             RestApiId: !Ref ApiResource```
  
