@@ -1,5 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
+Description: Invoke Lambda function.
 Resources:
   ApiResource:
     Type: AWS::Serverless::Api
@@ -22,12 +23,11 @@ Resources:
         - AmazonTextractFullAccess
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
-      Description: Invoke lambda function.
       Events:
         APImy:
           Type: Api
           Properties:
-            Path: /
+            Path: /hello
             Method: get
             RestApiId: !Ref ApiResource
             
