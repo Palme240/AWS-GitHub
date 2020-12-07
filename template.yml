@@ -12,7 +12,6 @@ Resources:
       Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
-      Role: !GetAtt BasicAWSLambdaRole.Arn
       FunctionName: myfunction-GitHub
       Handler: Lambda_function.lambda_handler
       Runtime: python3.8
@@ -35,7 +34,6 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
-      Role: !GetAtt BasicAWSLambdaRole.Arn
       FunctionName: myfunction-GitHub2
       Handler: Lambda_function2.lambda_handler
       Runtime: python3.8
