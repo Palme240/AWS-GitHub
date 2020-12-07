@@ -46,7 +46,6 @@ Resources:
         - AmazonTextractFullAccess
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole    
-      
       Events:
         APImy:
           Type: Api
