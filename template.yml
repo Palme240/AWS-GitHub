@@ -17,7 +17,7 @@ Resources:
         - AWSLambdaBasicExecutionRole
       Description: Invoke lambda function.
       Events:
-        HelloWorldV2:
+        HelloWorld:
           Type: Api
           Properties:
             Path: /
