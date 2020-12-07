@@ -23,7 +23,7 @@ Resources:
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
       Events:
-        APImy:
+        API:
           Type: Api
           Properties:
             Path: /hello
@@ -45,7 +45,7 @@ Resources:
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole    
       Events:
-        APImy:
+        API:
           Type: Api
           Properties:
             Path: /lambda_2
