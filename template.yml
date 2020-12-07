@@ -16,6 +16,21 @@ Resources:
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
       Description: Invoke lambda function.
+  Function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      FunctionName: myfunction-GitHub2
+      Handler: Lambda_function2.lambda_handler
+      Runtime: python3.8
+      Timeout: 300
+      MemorySize: 256
+      Policies:
+        - AmazonS3FullAccess
+        - AmazonTextractFullAccess
+        - CloudWatchLogsFullAccess
+        - AWSLambdaBasicExecutionRole    
+      
       Events:
         HelloWorld:
           Type: Api
