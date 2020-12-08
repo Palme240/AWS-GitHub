@@ -12,7 +12,6 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: Lambda_function.lambda_handler
-      Role: !GetAtt BasicAWSLambdaRole.Arn
       Runtime: python3.8
       CodeUri: ./                          # Look for code in the same directory as the output SAM file
       Events:
@@ -27,7 +26,6 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: Lambda_function2.lambda_handler2
-      Role: !GetAtt BasicAWSLambdaRole.Arn
       Runtime: python3.8
       CodeUri: ./secondsample           # code is in the secondsample directory, located in same directory
       Events:
