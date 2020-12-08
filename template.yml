@@ -51,4 +51,4 @@ Resources:
           Properties:
             Path: /TextResource
             Method: GET
-            RestApiId: !Ref ApiResource```
+            RestApiId: !Ref ApiResource
