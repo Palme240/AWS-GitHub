@@ -23,7 +23,7 @@ Resources:
         Variables:
           LAMBDA_ENVIRONMENT: local
       Events:
-        MyTimeApi:
+        ApiResource:
           Type: Api
           Properties:
             Path: /TimeResource
@@ -46,7 +46,7 @@ Resources:
         Variables:
           LAMBDA_ENVIRONMENT: local
       Events:
-        MyTimeApi:
+        ApiResource:
           Type: Api
           Properties:
             Path: /TextResource
