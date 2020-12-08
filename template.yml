@@ -1,58 +1,56 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Outputs the time
-
+Description: >
+  basic-aws-apigateway-demo
+  Sample SAM Template for basic-aws-apigateway-demo
+  
 Resources:
-  ApiResource:
+  BasicAWSApiGateway:
     Type: AWS::Serverless::Api
     Properties:
-      StageName: prod  
-  
-  TimeFunction:
-    DependsOn:
-        - ApiResource
+      Name: Basic AWS Api Gateway
+      StageName: Staging
+      
+   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: Lambda_function.lambda_handler
-      Runtime: python3.8
       CodeUri: ./
-      Policies:
-        - AmazonS3FullAccess
-        - AmazonTextractFullAccess
-        - CloudWatchLogsFullAccess
-        - AWSLambdaBasicExecutionRole
-      Environment:
-        Variables:
-          LAMBDA_ENVIRONMENT: local
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
       Events:
-        Api:
+        HelloWorldApi:
           Type: Api
           Properties:
-            Path: /TimeResource
+            RestApiId: !Ref BasicAWSApiGateway
+            Path: /hello
             Method: GET
-            RestApiId: !Ref App
             
-  
-  SecondSampleFunction:
-    DependsOn:
-        - ApiResource
+   HelloWorldFunction2:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: Lambda_function2.lambda_handler2
-      Runtime: python3.8
       CodeUri: ./
-      Policies:
-        - AmazonS3FullAccess
-        - AmazonTextractFullAccess
-        - CloudWatchLogsFullAccess
-        - AWSLambdaBasicExecutionRole
-      Environment:
-        Variables:
-          LAMBDA_ENVIRONMENT: local
+      Handler: lambda_function2.lambda_handler2
+      Runtime: python3.8
       Events:
-        Api:
+        HelloWorldApi:
           Type: Api
           Properties:
-            Path: /TextResource
-            Method: GET
-            RestApiId: !Ref App
+            RestApiId: !Ref BasicAWSApiGateway
+            Path: /hello2
+            Method: GET         
+ 
+Outputs:
+  BasicAWSApiGateway:
+    Description: 'API Gateway endpoint URL for Staging stage for Hello World function'
+    Value: !Sub 'https://${BasicAWSApiGateway}.execute-api.${AWS::Region}.amazonaws.com/Staging/hello/'
+  BasicAWSApiGatewayRestApiId:
+    Description: 'API Gateway ARN for Basic AWS API Gateway'
+    Value: !Ref BasicAWSApiGateway
+    Export:
+      Name: BasicAWSApiGateway-RestApiId
+  BasicAWSApiGatewayRootResourceId:
+    Value: !GetAtt BasicAWSApiGateway.RootResourceId
+    Export:
+      Name: BasicAWSApiGateway-RootResourceId
+      
+      
