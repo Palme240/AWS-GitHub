@@ -25,7 +25,7 @@ Resources:
   SecondSampleFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: Lambda_function2.lambda_handler
+      Handler: Lambda_function2.lambda_handler2
       Role: !GetAtt BasicAWSLambdaRole.Arn
       Runtime: nodejs6.10
       CodeUri: ./secondsample           # code is in the secondsample directory, located in same directory
