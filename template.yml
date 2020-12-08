@@ -9,6 +9,8 @@ Resources:
       StageName: prod  
   
   TimeFunction:
+    DependsOn:
+        -ApiResource
     Type: AWS::Serverless::Function
     Properties:
       Handler: Lambda_function.lambda_handler
@@ -32,6 +34,8 @@ Resources:
             
   
   SecondSampleFunction:
+    DependsOn:
+        -ApiResource
     Type: AWS::Serverless::Function
     Properties:
       Handler: Lambda_function2.lambda_handler2
