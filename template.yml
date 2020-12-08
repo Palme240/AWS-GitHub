@@ -1,25 +1,38 @@
-AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Invoke Lambda function.
+Description: Outputs the time
+
 Resources:
-  Function:
+  ApiResource:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod  
+  
+  TimeFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: ./
-      FunctionName: myfunction-GitHub
       Handler: Lambda_function.lambda_handler
-      Runtime: python3.8
-      Timeout: 300
-      MemorySize: 256
-      Policies:
-        - AmazonS3FullAccess
-        - AmazonTextractFullAccess
-        - CloudWatchLogsFullAccess
-        - AWSLambdaBasicExecutionRole
-      
+      Role: !GetAtt BasicAWSLambdaRole.Arn
+      Runtime: nodejs6.10
+      CodeUri: ./                          # Look for code in the same directory as the output SAM file
       Events:
-        MyApi:
+        MyTimeApi:
           Type: Api
           Properties:
-            Path: /
-            Method: get
+            Path: /TimeResource
+            Method: GET
+            RestApiId: !Ref ApiResource
+  
+  SecondSampleFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: Lambda_function2.lambda_handler
+      Role: !GetAtt BasicAWSLambdaRole.Arn
+      Runtime: nodejs6.10
+      CodeUri: ./secondsample           # code is in the secondsample directory, located in same directory
+      Events:
+        MyTimeApi:
+          Type: Api
+          Properties:
+            Path: /TextResource
+            Method: GET
+            RestApiId: !Ref ApiResource```
