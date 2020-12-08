@@ -30,7 +30,7 @@ Resources:
           Properties:
             Path: /TimeResource
             Method: GET
-            RestApiId: !Ref ApiResource
+            RestApiId: !Ref App
             
   
   SecondSampleFunction:
@@ -55,4 +55,4 @@ Resources:
           Properties:
             Path: /TextResource
             Method: GET
-            RestApiId: !Ref ApiResource
+            RestApiId: !Ref App
