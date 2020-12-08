@@ -1,9 +1,14 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Invoke Lambda function.
-Resources:    
+Resources:
+  ApiResource:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod 
+      
   Function:
-      Type: AWS::Serverless::Function
+    Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
       FunctionName: myfunction-GitHub
@@ -16,9 +21,34 @@ Resources:
         - AmazonTextractFullAccess
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
+      
       Events:
-        ApiResource:
+        MyApi:
+          Type: Api
+          Properties:
+            Path: /
+            Method: get
+            RestApiId: !Ref ApiResource
+            
+  Function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      FunctionName: myfunction2-GitHub
+      Handler: Lambda_function2.lambda_handler
+      Runtime: python3.8
+      Timeout: 300
+      MemorySize: 256
+      Policies:
+        - AmazonS3FullAccess
+        - AmazonTextractFullAccess
+        - CloudWatchLogsFullAccess
+        - AWSLambdaBasicExecutionRole
+      
+      Events:
+        MyApi:
           Type: Api
           Properties:
             Path: /hello
             Method: get
+            RestApiId: !Ref ApiResource 
