@@ -19,6 +19,9 @@ Resources:
         - AmazonTextractFullAccess
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
+      Environment:
+        Variables:
+          LAMBDA_ENVIRONMENT: local
       Events:
         MyTimeApi:
           Type: Api
@@ -39,6 +42,9 @@ Resources:
         - AmazonTextractFullAccess
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
+      Environment:
+        Variables:
+          LAMBDA_ENVIRONMENT: local
       Events:
         MyTimeApi:
           Type: Api
