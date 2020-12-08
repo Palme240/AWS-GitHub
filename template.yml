@@ -13,7 +13,12 @@ Resources:
     Properties:
       Handler: Lambda_function.lambda_handler
       Runtime: python3.8
-      CodeUri: ./                          # Look for code in the same directory as the output SAM file
+      CodeUri: ./
+      Policies:
+        - AmazonS3FullAccess
+        - AmazonTextractFullAccess
+        - CloudWatchLogsFullAccess
+        - AWSLambdaBasicExecutionRole
       Events:
         MyTimeApi:
           Type: Api
@@ -21,13 +26,19 @@ Resources:
             Path: /TimeResource
             Method: GET
             RestApiId: !Ref ApiResource
+            
   
   SecondSampleFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: Lambda_function2.lambda_handler2
       Runtime: python3.8
-      CodeUri: ./secondsample           # code is in the secondsample directory, located in same directory
+      CodeUri: ./
+      Policies:
+        - AmazonS3FullAccess
+        - AmazonTextractFullAccess
+        - CloudWatchLogsFullAccess
+        - AWSLambdaBasicExecutionRole
       Events:
         MyTimeApi:
           Type: Api
