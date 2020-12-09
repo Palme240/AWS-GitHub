@@ -5,27 +5,11 @@ Description: >
   Sample SAM Template for basic-aws-apigateway-demo
   
 Resources:
-  BasicAWSApiGateway:
+  ApiResource:
     Type: AWS::Serverless::Api
     Properties:
-      Name: Basic AWS Api Gateway
-      StageName: Staging
-     
-Outputs:
-  BasicAWSApiGateway:
-    Description: 'API Gateway endpoint URL for Staging stage for Hello World function'
-    Value: !Sub 'https://${BasicAWSApiGateway}.execute-api.${AWS::Region}.amazonaws.com/Staging/hello/'
-  BasicAWSApiGatewayRestApiId:
-    Description: 'API Gateway ARN for Basic AWS API Gateway'
-    Value: !Ref BasicAWSApiGateway
-    Export:
-      Name: BasicAWSApiGateway-RestApiId
-  BasicAWSApiGatewayRootResourceId:
-    Value: !GetAtt BasicAWSApiGateway.RootResourceId
-    Export:
-      Name: BasicAWSApiGateway-RootResourceId
-      
-     
+      StageName: prod
+       
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -41,7 +25,7 @@ Outputs:
         HelloWorldApi:
           Type: Api
           Properties:
-            RestApiId: !Ref BasicAWSApiGateway
+            RestApiId: !Ref ApiResource
             Path: /
             Method: GET
             
@@ -60,7 +44,7 @@ Outputs:
         HelloWorldApi:
           Type: Api
           Properties:
-            RestApiId: !Ref BasicAWSApiGateway
+            RestApiId: !Ref ApiResource
             Path: /hello
             Method: GET         
     
