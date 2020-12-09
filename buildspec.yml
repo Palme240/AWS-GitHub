@@ -5,11 +5,11 @@ phases:
         python: 3.8
     commands:
       - pip install --upgrade awscli aws-sam-cli
+      - sam build
 
   build:
     commands:
       - pip3 install aws-sam-cli
-      - sam build
       - export BUCKET=s3-cloud-pipeline-artifacts
       - sam package --template-file template.yml --s3-bucket githubbucket1 --output-template-file outputtemplate.yml
 artifacts:
