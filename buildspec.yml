@@ -6,7 +6,7 @@ phases:
   build:
     commands:
       - pip install --user aws-sam-cli
-      - sam build
+      - sam build -t template.yml
   post_build:
     commands:
       - export BUCKET=s3-cloud-pipeline-artifacts
