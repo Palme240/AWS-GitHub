@@ -8,6 +8,9 @@ phases:
 
   build:
     commands:
+    
+  post_build: 
+    commands: 
       - pip3 install aws-sam-cli
       - export BUCKET=s3-cloud-pipeline-artifacts
       - aws cloudformation package --template-file template.yml --s3-bucket githubbucket1 --output-template-file outputtemplate.yml
