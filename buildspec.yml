@@ -5,7 +5,7 @@ phases:
         python: 3.8    
   build:
     commands:
-      - sam build 
+      - sam build --use-container
   post_build:
     commands:
       - pip install --user aws-sam-cli
