@@ -23,7 +23,8 @@ Resources:
         HelloWorldApi:
           Type: Api
           Properties:
-            RestApiId: !Ref ApiResource
+            RestApiId: 
+              Ref: ApiResource
             Path: /
             Method: GET
             
@@ -42,7 +43,8 @@ Resources:
         HelloWorldApi:
           Type: Api
           Properties:
-            RestApiId: !Ref ApiResource
+            RestApiId:
+              Ref: ApiResource
             Path: /hello
             Method: GET         
     
