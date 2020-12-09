@@ -23,10 +23,10 @@ Resources:
         HelloWorldApi:
           Type: Api
           Properties:
-            RestApiId: 
-              Ref: ApiResource
             Path: /
             Method: GET
+            RestApiId: 
+              Ref: ApiResource
             
    HelloWorldFunction2:
     Type: AWS::Serverless::Function
@@ -43,10 +43,10 @@ Resources:
         HelloWorldApi:
           Type: Api
           Properties:
-            RestApiId:
-              Ref: ApiResource
             Path: /hello
-            Method: GET         
+            Method: GET
+            RestApiId: 
+              Ref: ApiResource
     
       
       
