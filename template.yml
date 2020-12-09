@@ -19,6 +19,7 @@ Resources:
         - AmazonTextractFullAccess
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
+        - AmazonAPIGatewayInvokeFullAccess
       Events:
         HelloWorldApi:
           Type: Api
@@ -39,6 +40,7 @@ Resources:
         - AmazonTextractFullAccess
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
+        - AmazonAPIGatewayInvokeFullAccess
       Events:
         HelloWorldApi:
           Type: Api
