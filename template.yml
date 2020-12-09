@@ -61,7 +61,7 @@ Outputs:
           Type: Api
           Properties:
             RestApiId: !Ref BasicAWSApiGateway
-            Path: /hello2
+            Path: /hello
             Method: GET         
     
       
