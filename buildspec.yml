@@ -2,11 +2,16 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-        python: 3.8    
+        python: 3.8
+        
+  pre_build:
+    commands:
+      - python -m unittest discover tests
+
   build:
     commands:
       - pip install --user aws-sam-cli
-      - sam build -t template.yml
+      - sam build
   post_build:
     commands:
       - export BUCKET=s3-cloud-pipeline-artifacts
