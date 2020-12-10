@@ -13,9 +13,6 @@ phases:
        
   
   build:
-    commands:
-    
-  post_build: 
     commands: 
       - pip3 install aws-sam-cli
       - export BUCKET=s3-cloud-pipeline-artifacts
