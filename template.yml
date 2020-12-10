@@ -20,6 +20,7 @@ Resources:
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
         - AmazonAPIGatewayInvokeFullAccess
+      AutoPublishAlias: DEV
       Events:
         HelloWorld:
           Type: Api
@@ -27,7 +28,7 @@ Resources:
             Path: /
             Method: GET
             RestApiId: !Ref ApiResource
-      AutoPublishAlias: DEV
+      
             
     Function2:
     Type: AWS::Serverless::Function
@@ -41,6 +42,7 @@ Resources:
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
         - AmazonAPIGatewayInvokeFullAccess
+      AutoPublishAlias: DEV
       Events:
         HelloWorld:
           Type: Api
@@ -48,4 +50,3 @@ Resources:
             Path: /hello
             Method: GET
             RestApiId: !Ref ApiResource
-      AutoPublishAlias: DEV
