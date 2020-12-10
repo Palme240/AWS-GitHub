@@ -3,7 +3,7 @@ Transform: AWS::Serverless-2016-10-31
 Description: Sample SAM Template for basic-aws-apigateway-lambda function
   
 Resources:
-    Api:
+    MyApi:
     Type: AWS::Serverless::Api
     Properties:
       StageName: prod 
@@ -23,7 +23,7 @@ Resources:
         - AWSLambdaBasicExecutionRole
       AutoPublishAlias: DEV
       Events:
-        Api:
+        MyApi:
           Type: Api
           Properties:
             Path: /
@@ -46,7 +46,7 @@ Resources:
         - AWSLambdaBasicExecutionRole
       AutoPublishAlias: DEV
       Events:
-        Api:
+        MyApi:
           Type: Api
           Properties:
             Path: /hello
