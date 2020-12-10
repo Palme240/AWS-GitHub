@@ -3,20 +3,10 @@ phases:
   install:
     runtime-versions:
         python: 3.8
-    commands:
-      - pip install --upgrade awscli 
-
-  pre_build:
-    commands:
-      - cd aws
-      - python -m unittest discover tests
-       
-  
   build:
-    commands: 
-      - pip3 install aws-sam-cli
+    commands:
       - export BUCKET=s3-cloud-pipeline-artifacts
-      - aws package --template-file template.yml --s3-bucket githubbucket1 --output-template-file outputtemplate.yml
+      - aws cloudformation package --template-file template.yml --s3-bucket githubbucket1 --output-template-file outputtemplate.yml
 artifacts:
   type: zip
   files:
