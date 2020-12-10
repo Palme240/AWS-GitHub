@@ -1,18 +1,13 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Sample SAM Template for basic-aws-apigateway-lambda function
-  
+Description: Invoke Lambda function.
 Resources:
-    MyApi:
-    Type: AWS::Serverless::Api
-    Properties:
-      StageName: Dev
-      
-    Function1:
+  Function:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
-      Handler: lambda_function.lambda_handler
+      FunctionName: myfunction-GitHub
+      Handler: Lambda_function.lambda_handler
       Runtime: python3.8
       Timeout: 300
       MemorySize: 256
@@ -21,33 +16,10 @@ Resources:
         - AmazonTextractFullAccess
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
-      AutoPublishAlias: DEV
+      
       Events:
         MyApi:
           Type: Api
           Properties:
             Path: /
-            Method: GET
-            RestApiId: !Ref "MyApi"
-            
-    Function2:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: ./
-      Handler: lambda_function2.lambda_handler2
-      Runtime: python3.8
-      Timeout: 300
-      MemorySize: 256
-      Policies:
-        - AmazonS3FullAccess
-        - AmazonTextractFullAccess
-        - CloudWatchLogsFullAccess
-        - AWSLambdaBasicExecutionRole
-      AutoPublishAlias: DEV
-      Events:
-        MyApi:
-          Type: Api
-          Properties:
-            Path: /hello
-            Method: GET
-            RestApiId: !Ref "MyApi"
+            Method: get
