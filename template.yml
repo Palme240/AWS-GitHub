@@ -14,12 +14,7 @@ Resources:
       CodeUri: ./
       Handler: lambda_function.handler
       Runtime: python3.8
-      Policies:
-        - AmazonS3FullAccess
-        - AmazonTextractFullAccess
-        - CloudWatchLogsFullAccess
-        - AWSLambdaBasicExecutionRole
-        - AmazonAPIGatewayInvokeFullAccess
+      Role: !GetAtt BasicAWSLambdaRole.Arn
       AutoPublishAlias: DEV
       Events:
         HelloWorld:
@@ -36,12 +31,7 @@ Resources:
       CodeUri: ./
       Handler: lambda_function2.handler
       Runtime: python3.8
-      Policies:
-        - AmazonS3FullAccess
-        - AmazonTextractFullAccess
-        - CloudWatchLogsFullAccess
-        - AWSLambdaBasicExecutionRole
-        - AmazonAPIGatewayInvokeFullAccess
+      Role: !GetAtt BasicAWSLambdaRole.Arn
       AutoPublishAlias: DEV
       Events:
         HelloWorld:
