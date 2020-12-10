@@ -22,7 +22,7 @@ Resources:
           Properties:
             Path: /
             Method: GET
-            RestApiId: !Ref ApiResource
+            RestApiId: !Ref "ApiResource"
       
             
     Function2:
@@ -39,4 +39,4 @@ Resources:
           Properties:
             Path: /hello
             Method: GET
-            RestApiId: !Ref ApiResource
+            RestApiId: !Ref "ApiResource"
