@@ -28,8 +28,6 @@ Resources:
             Method: GET
             RestApiId: !Ref ApiResource
       AutoPublishAlias: DEV
-      DeploymentPreference:
-        Type: AllAtOnce 
             
     Function2:
     Type: AWS::Serverless::Function
@@ -51,5 +49,3 @@ Resources:
             Method: GET
             RestApiId: !Ref ApiResource
       AutoPublishAlias: DEV
-      DeploymentPreference:
-        Type: AllAtOnce
