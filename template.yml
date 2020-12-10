@@ -3,6 +3,10 @@ Transform: AWS::Serverless-2016-10-31
 Description: Sample SAM Template for basic-aws-apigateway-lambda function
   
 Resources:
+    Api:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod 
       
     Function1:
     Type: AWS::Serverless::Function
@@ -13,11 +17,12 @@ Resources:
       Role: !GetAtt BasicAWSLambdaRole.Arn
       AutoPublishAlias: DEV
       Events:
-        HelloWorld:
+        Api:
           Type: Api
           Properties:
             Path: /
             Method: GET
+            RestApiId: !Ref ApiResource
       
             
     Function2:
@@ -29,8 +34,9 @@ Resources:
       Role: !GetAtt BasicAWSLambdaRole.Arn
       AutoPublishAlias: DEV
       Events:
-        HelloWorld:
+        Api:
           Type: Api
           Properties:
             Path: /hello
             Method: GET
+            RestApiId: !Ref ApiResource
