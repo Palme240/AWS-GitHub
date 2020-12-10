@@ -7,7 +7,6 @@ phases:
         - npm install 
   build:
     commands:
-      - npm test 
       - export BUCKET=s3-cloud-pipeline-artifacts
       - aws cloudformation package --template-file template.yml --s3-bucket githubbucket1 --output-template-file outputtemplate.yml
 artifacts:
