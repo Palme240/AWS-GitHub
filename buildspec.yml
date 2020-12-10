@@ -4,6 +4,7 @@ phases:
     runtime-versions:
         python: 3.8
     commands:
+      - pip3 install awscli --upgrade --user
       - npm install 
   build:
     commands:
