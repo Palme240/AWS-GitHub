@@ -1,7 +1,7 @@
 import json
 
 
-def lambda_handler(event, context):
+def lambda_handler2(event, context):
     return response("Welcome to my python lambda function 2", 200)
 
 
