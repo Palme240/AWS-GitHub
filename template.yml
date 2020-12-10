@@ -18,7 +18,6 @@ Resources:
           Properties:
             Path: /
             Method: GET
-            RestApiId: !Ref HelloWorld
       
             
     Function2:
@@ -35,4 +34,3 @@ Resources:
           Properties:
             Path: /hello
             Method: GET
-            RestApiId: !Ref HelloWorld
