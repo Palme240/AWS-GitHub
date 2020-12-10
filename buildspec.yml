@@ -4,16 +4,13 @@ phases:
     runtime-versions:
         python: 3.8
     commands:
-      - pip install --upgrade awscli aws-sam-cli
-      - npm install -g serverless@1.41.1
-      - npm install serverless-domain-manager --save-dev
-      - npm install serverless-python-requirements
-      - npm install serverless-plugin-canary-deployments --save-dev
+      - pip install --upgrade awscli 
 
   pre_build:
-        commands:
-          - pip3 install --upgrade virtualenv pytest awscli boto3 botocore moto
-          - python3 -m pytest
+    commands:
+      - cd aws
+      - python -m unittest discover tests
+       
   
   build:
     commands:
