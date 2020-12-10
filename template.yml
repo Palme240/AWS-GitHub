@@ -35,7 +35,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
-      Handler: lambda_function2.lambda_handler2
+      Handler: lambda_function2.lambda_handler
       Runtime: python3.8
       Policies:
         - AmazonS3FullAccess
