@@ -1,14 +1,6 @@
-import json
-
-
+import boto3
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('name')
 def lambda_handler2(event, context):
-    return response("Welcome to my python lambda function 2", 200)
-
-
-def response(message, status_code):
-    return {
-        'isBase64Encoded': False,
-        'statusCode': status_code,
-        'body': json.dumps(message),
-        'headers': {'Content-Type': 'application/json'}
-    }
+    table.put_item(Item=event)
+    return {"code":200, "message":"Customer Added Successfully"}
