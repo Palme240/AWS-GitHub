@@ -1,4 +1,4 @@
-import boto3, json
+import boto3
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('CUSTOMERS')
 def lambda_handler2(event, context):
