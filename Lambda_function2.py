@@ -1,4 +1,4 @@
-import boto3
+import boto3, json
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('CUSTOMERS')
 
