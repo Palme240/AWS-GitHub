@@ -9,6 +9,6 @@ def lambda_handler2(event, context):
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Credentials': 'true'
         },
-        "body": json.dumps(item)
+        "body": json.dumps(Item)
     }
     return response
