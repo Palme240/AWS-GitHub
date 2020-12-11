@@ -1,17 +1,17 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Invoke Lambda function.
+Description: Create an API gateway with triggered Lambda function
 Resources:
   ApiResource:
     Type: AWS::Serverless::Api
     Properties:
-      StageName: prod
+      StageName: Dev
       
   Function:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
-      FunctionName: myfunction-GitHub
+      FunctionName: HelloWorldFunction-GitHub
       Handler: Lambda_function.lambda_handler
       Runtime: python3.8
       Timeout: 300
@@ -25,7 +25,7 @@ Resources:
         MyApi:
           Type: Api
           Properties:
-            Path: /
+            Path: /Hello
             Method: get
             RestApiId: !Ref ApiResource
             
@@ -33,7 +33,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
-      FunctionName: myfunction2-GitHub
+      FunctionName: PostFunction-GitHub
       Handler: Lambda_function2.lambda_handler2
       Runtime: python3.8
       Timeout: 300
@@ -43,10 +43,11 @@ Resources:
         - AmazonTextractFullAccess
         - CloudWatchLogsFullAccess
         - AWSLambdaBasicExecutionRole
+        - AmazonDynamoDBFullAccess
       Events:
         MyApi:
           Type: Api
           Properties:
-            Path: /hello
-            Method: get
+            Path: /customer
+            Method: post
             RestApiId: !Ref ApiResource   
