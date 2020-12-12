@@ -1,7 +1,8 @@
 import boto3
 import json
-
+PARTTION_KEY = 'CUSTOMER_ID'
 def lambda_handler2(event, context):
+    print(json.dumps(event))
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('CUSTOMERS')
     table.put_item(Item=event)
