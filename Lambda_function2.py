@@ -1,7 +1,9 @@
 import boto3
-dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('CUSTOMERS')
+import json
+
 def lambda_handler2(event, context):
-    it = json.loads(event['records'][0]['data'])
-    response = table.put_item(Item = it)
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('CUSTOMERS')
+    response = table.put_item(Item = event)
+    print(json.dumps(response))
     return response
