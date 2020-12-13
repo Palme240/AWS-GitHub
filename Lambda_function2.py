@@ -5,7 +5,6 @@ def lambda_handler2(event, context):
     table = dynamodb.Table('CUSTOMERS')
     PARTTION_KEY = 'CUSTOMER_ID'
     table.put_item(
-    TableName=CUSTOMERS,
     Item={
         PARTITION_KEY: {'S': 'my-part-key'}
     }
