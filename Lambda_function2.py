@@ -1,8 +1,10 @@
 import boto3
-import json
+PARTTION_KEY = 'CUSTOMER_ID'
 def lambda_handler2(event, context):
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('CUSTOMERS')
-    it = json.loads(event['records'][0]['data'])
-    response = table.put_item(Item = it)
+    Item={
+        PARTITION_KEY: {'S'}
+    }
+)
     return {"Code": 200, "message":"Customer Added Successfully"}
