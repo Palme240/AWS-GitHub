@@ -1,18 +1,17 @@
 import boto3
-def lambda_handler2(event, context):
-    dynamodb = boto3.resource('dynamodb')
+import os
+import json 
+
+dynamodb = boto3.resource('dynamodb')
+   
+def lambda_handler2(event, context): 
     table = dynamodb.Table('CUSTOMERS')
+    data = json.loads(event['body'])
     table.put_item(
-        Item ={
-              "CUSTOMER_ID":'1234',
-              "CUST_NAME":'CARTESOFT',
-              "LOCATION":'PLATEN'
-            
-            
+        Key={
+            'id': data['id']
         }
-                  
-                  
-)
+    )              
     
     return {"Code": 200, "message":"Customer Added Successfully"}
 
