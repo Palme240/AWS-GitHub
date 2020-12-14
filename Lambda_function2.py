@@ -5,7 +5,7 @@ def lambda_handler2(event, context):
     table = dynamodb.Table('CUSTOMERS')
     print (event)
     body = json.loads(event['body'])
-    response = table.put_item(Item = body)
+    table.put_item(Item = body)
     
     print(json.dumps(response))
-    print("Row-" + str(index) + " written to DynamoDB successfully")
+    print("Row-" + str(body) + " written to DynamoDB successfully")
