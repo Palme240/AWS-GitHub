@@ -4,7 +4,7 @@ dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('CUSTOMERS')
    
 def lambda_handler2(event, context): 
-   table.put_item(Item = event, ConditionExpression = "attribute_not_exists(CUSTOMER_ID)" )            
+   table.put_item(Item = event, Key={'CUSTOMER_ID': '1234'} )            
     
    return {"Status_code" : 200, "message" : "Customer Added Successfully"}
 
