@@ -6,8 +6,5 @@ table = dynamodb.Table('CUSTOMERS')
 def lambda_handler2(event, context): 
    table.put_item(Item=event)            
     
-    return {
-               "Status_code" : 200, 
-               "message" : "Customer Added Successfully"
-           }
+   return {"Status_code" : 200, "message" : "Customer Added Successfully"}
 
