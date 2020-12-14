@@ -7,4 +7,4 @@ def lambda_handler2(event, context):
     body = json.loads(event['body'])
     table.put_item(Item = body)
     
-    return {'Status Code': 200, 'body':'Customer Added Successfully'}
+    return {"Status Code": 200, "body": "Customer Added Successfully"}
