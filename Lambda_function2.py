@@ -4,7 +4,7 @@ def lambda_handler2(event, context):
     table = dynamodb.Table('CUSTOMERS')
     table.put_item(
         Item ={
-              "CUSTOMER_ID":"",   
+              "CUSTOMER_ID":"BJX504",   
         }
                   
                   
